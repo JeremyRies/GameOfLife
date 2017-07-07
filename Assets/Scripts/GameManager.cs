@@ -22,13 +22,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        RunGame();
+    }
+
+    private void RunGame()
+    {
         _board = new Board(Width, Height);
         _helperBoard = new Board(Width, Height);
 
         _simulation = ChooseSimulation(SimulationType);
 
         Randomize(_board.Fields);
-       
+
         BoardVisualizer.Initialize(_board);
     }
 
@@ -58,7 +63,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RunGame();
+        }
         if (_timeSinceLastUpdate > TimeBetweenUpdates)
         {
             UpdateHelperBoard();
