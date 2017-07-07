@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,25 +11,38 @@ public class GameManager : MonoBehaviour
 
     public float TimeBetweenUpdates;
     public BoardVisualizer BoardVisualizer;
+    public SimulationType SimulationType;
 
     private float _timeSinceLastUpdate;
 
     private Board _board;
     private Board _helperBoard;
 
-    private readonly IGameSimulation _simulation = new MultiThreadSimulation();
+    private IGameSimulation _simulation;
 
     private void Start()
     {
         _board = new Board(Width, Height);
-
-        var fields = _board.Fields;
-
-        Randomize(fields);
-
         _helperBoard = new Board(Width, Height);
 
+        _simulation = ChooseSimulation(SimulationType);
+
+        Randomize(_board.Fields);
+       
         BoardVisualizer.Initialize(_board);
+    }
+
+    private IGameSimulation ChooseSimulation(SimulationType simulationType)
+    {
+        switch (simulationType)
+        {
+            case SimulationType.SingleThreaded:
+                return new SingleThreadSimulation();
+            case SimulationType.MultiThreaded:
+                return new MultiThreadSimulation();
+            default:
+                throw new ArgumentOutOfRangeException("simulationType", simulationType, null);
+        }
     }
 
     private void Randomize(Field[,] fields)
@@ -66,3 +81,4 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+
