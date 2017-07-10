@@ -1,13 +1,16 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
+[Serializable]
 public class Field
 {
-    public readonly IntVector2 Position;
+    public int X;
+    public int Y;
     public bool Alive;
 
     public Field(int x, int y, bool alive = false)
     {
-        Position = new IntVector2(x,y);
+        X = x;
+        Y = y;
         Alive = alive;
     }
 }

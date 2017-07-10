@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-[Serializable]
 public class IntVector2
 {
     public override bool Equals(object obj)
@@ -18,6 +18,11 @@ public class IntVector2
         {
             return (X * 397) ^ Y;
         }
+    }
+
+    public static explicit operator Vector2(IntVector2 v)
+    {
+        return new Vector2(v.X, v.Y);
     }
 
     public static explicit operator IntVector2(Vector2 v)

@@ -48,7 +48,7 @@ public class BoardTests : MonoBehaviour
 
         aliveFields.Add(new IntVector2(1, 1));
         var board = TestBoard(aliveFields);
-
+        
         var aliveFieldsCount = board.GetSurroundingAliveFieldsCount(board.Fields[1, 1]);
 
         Assert.AreEqual(4, aliveFieldsCount);
@@ -127,4 +127,10 @@ public class BoardTests : MonoBehaviour
         Assert.AreEqual(true, shouldLive);
     }
 
+    void ResharperPublicShit()
+    {
+        var field = new Field(1,1);
+        field.X = 1;
+        field.Y = 1;
+    }
 }

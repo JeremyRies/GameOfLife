@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var boardField in _board.Fields)
         {
-            _helperBoard.Fields[boardField.Position.X, boardField.Position.Y].Alive = boardField.Alive;
+            _helperBoard.Fields[boardField.X, boardField.Y].Alive = boardField.Alive;
         }
     }
 }
