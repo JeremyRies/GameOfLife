@@ -17,6 +17,8 @@ public class InputGrid : MonoBehaviour
 
     public float CellSize;
     public Field[] Fields;
+
+    public InputField InputField;
 	// Use this for initialization
     void Start()
     {
@@ -73,8 +75,9 @@ public class InputGrid : MonoBehaviour
         board.Fields = Fields.ToList();
          var field = new Field(1,1,true);
         var fieldsJson = JsonUtility.ToJson(board);
-        var utcNowTicks = DateTime.UtcNow.Ticks;
-        File.WriteAllText("Assets/Resources/"+ "GliderSpawner" + ".json", fieldsJson);
+        //var utcNowTicks = DateTime.UtcNow.Ticks;
+        var fileName = InputField.text;
+        File.WriteAllText("Assets/Resources/"+ fileName + ".json", fieldsJson);
     }
     // Update is called once per frame
     void Update () {
