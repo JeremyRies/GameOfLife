@@ -1,6 +1,6 @@
 using UnityEngine;
 
-class Texture2DVisualizer : BoardVisualizer
+class Texture2DVisualizer : AbstractBoardVisualizer
 {
     public MeshRenderer MeshRenderer;
     private Texture2D _texture;

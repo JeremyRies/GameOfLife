@@ -26,7 +26,8 @@ public class InputGrid : MonoBehaviour
         {
             for (int x = 0; x < Width; x++)
             {
-                var pos = new IntVector2(x, y);
+                var offset = 3;
+                var pos = new IntVector2(x+offset, y+offset);
                 Fields[y *Width+x] = new Field(x,y);
                 var button = Instantiate(GridButtonPrefab, (Vector2) pos* CellSize, transform.rotation,transform);
                 GridButtons[x, y] = button;
@@ -73,7 +74,7 @@ public class InputGrid : MonoBehaviour
          var field = new Field(1,1,true);
         var fieldsJson = JsonUtility.ToJson(board);
         var utcNowTicks = DateTime.UtcNow.Ticks;
-        File.WriteAllText("Assets/Resources/"+ "test" + ".json", fieldsJson);
+        File.WriteAllText("Assets/Resources/"+ "GliderSpawner" + ".json", fieldsJson);
     }
     // Update is called once per frame
     void Update () {

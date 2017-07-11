@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class GameManager : MonoBehaviour
     public int Height;
 
     public float TimeBetweenUpdates;
-    public BoardVisualizer BoardVisualizer;
+    public AbstractBoardVisualizer BoardVisualizer;
     public SimulationType SimulationType;
+
+    public AbstractStartPositionProvider StartPositionProvider;
 
     private float _timeSinceLastUpdate;
 
@@ -30,9 +33,9 @@ public class GameManager : MonoBehaviour
         _board = new Board(Width, Height);
         _helperBoard = new Board(Width, Height);
 
-        _simulation = ChooseSimulation(SimulationType);
+        StartPositionProvider.SetStartFields(_board);
 
-        Randomize(_board.Fields);
+        _simulation = ChooseSimulation(SimulationType);
 
         BoardVisualizer.Initialize(_board);
     }
@@ -47,18 +50,6 @@ public class GameManager : MonoBehaviour
                 return new MultiThreadSimulation();
             default:
                 throw new ArgumentOutOfRangeException("simulationType", simulationType, null);
-        }
-    }
-
-    private void Randomize(Field[,] fields)
-    {
-        for (int x = 0; x < Width; x++)
-        {
-            for (int y = 0; y < Height; y++)
-            {
-                var cell = fields[x, y];
-                cell.Alive = Random.Range(0, 2) == 0;
-            }
         }
     }
 
@@ -90,4 +81,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
