@@ -1,6 +1,6 @@
 using UnityEngine;
 
-class Texture2DVisualizer : AbstractBoardVisualizer
+class Texture2DVisualizer : BoardVisualizer
 {
     public MeshRenderer MeshRenderer;
     private Texture2D _texture;
@@ -20,9 +20,9 @@ class Texture2DVisualizer : AbstractBoardVisualizer
     {
         var boardWidth = board.Width;
         var colors = new Color32[boardWidth*board.Height];
-        for (int x = 0; x < boardWidth; x++)
+        for (var x = 0; x < boardWidth; x++)
         {
-            for (int y = 0; y < board.Height; y++)
+            for (var y = 0; y < board.Height; y++)
             {
                 var boardField = board.Fields[x, y];
                 var color = boardField.Alive ? _black : _white;

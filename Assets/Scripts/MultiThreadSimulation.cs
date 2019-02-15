@@ -1,5 +1,9 @@
 ﻿using System.Linq;
 using System.Threading;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
+using UnityEngine;
 
 class MultiThreadSimulation : IGameSimulation
 {
@@ -34,3 +38,5 @@ class MultiThreadSimulation : IGameSimulation
         }
     }
 }
+
+

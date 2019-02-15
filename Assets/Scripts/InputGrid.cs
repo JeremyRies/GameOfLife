@@ -29,9 +29,9 @@ public class InputGrid : MonoBehaviour
             for (int x = 0; x < Width; x++)
             {
                 var offset = 3;
-                var pos = new IntVector2(x+offset, y+offset);
+                var pos = new Vector2(x+offset, y+offset);
                 Fields[y *Width+x] = new Field(x,y);
-                var button = Instantiate(GridButtonPrefab, (Vector2) pos* CellSize, transform.rotation,transform);
+                var button = Instantiate(GridButtonPrefab, pos* CellSize, transform.rotation,transform);
                 GridButtons[x, y] = button;
             }
         }
@@ -79,8 +79,4 @@ public class InputGrid : MonoBehaviour
         var fileName = InputField.text;
         File.WriteAllText("Assets/Resources/"+ fileName + ".json", fieldsJson);
     }
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,54 +9,43 @@ public class GameManager : MonoBehaviour
     public int Height;
 
     public float TimeBetweenUpdates;
-    public AbstractBoardVisualizer BoardVisualizer;
-    public SimulationType SimulationType;
-
-    public AbstractStartPositionProvider StartPositionProvider;
+    public BoardVisualizer BoardVisualizer;
 
     private float _timeSinceLastUpdate;
 
     private Board _board;
     private Board _helperBoard;
 
-    private IGameSimulation _simulation;
+    private readonly IGameSimulation _simulation = new MultiThreadSimulation();
 
     private void Start()
     {
-        RunGame();
-    }
-
-    private void RunGame()
-    {
+        Screen.SetResolution(2160, 3840,true);
         _board = new Board(Width, Height);
+
+        var fields = _board.Fields;
+
+        Randomize(fields);
+
         _helperBoard = new Board(Width, Height);
-
-        StartPositionProvider.SetStartFields(_board);
-
-        _simulation = ChooseSimulation(SimulationType);
 
         BoardVisualizer.Initialize(_board);
     }
 
-    private IGameSimulation ChooseSimulation(SimulationType simulationType)
+    private void Randomize(Field[,] fields)
     {
-        switch (simulationType)
+        for (int x = 0; x < Width; x++)
         {
-            case SimulationType.SingleThreaded:
-                return new SingleThreadSimulation();
-            case SimulationType.MultiThreaded:
-                return new MultiThreadSimulation();
-            default:
-                throw new ArgumentOutOfRangeException("simulationType", simulationType, null);
+            for (int y = 0; y < Height; y++)
+            {
+                var cell = fields[x, y];
+                cell.Alive = Random.Range(0, 2) == 0;
+            }
         }
     }
 
     private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RunGame();
-        }
+    {   
         if (_timeSinceLastUpdate > TimeBetweenUpdates)
         {
             UpdateHelperBoard();
@@ -77,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var boardField in _board.Fields)
         {
-            _helperBoard.Fields[boardField.X, boardField.Y].Alive = boardField.Alive;
+            _helperBoard.Fields[boardField.Position.X, boardField.Position.Y].Alive = boardField.Alive;
         }
     }
 }

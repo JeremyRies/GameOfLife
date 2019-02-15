@@ -5,15 +5,9 @@ using System.Net.Mail;
 
 public class Board
 {
-    public int Width
-    {
-        get { return _width; }
-    }
+    public int Width => _width;
 
-    public int Height
-    {
-        get { return _height; }
-    }
+    public int Height => _height;
 
     public readonly Field[,] Fields;
     private readonly int _width;
@@ -27,8 +21,10 @@ public class Board
         for (int x = 0; x < Width; x++)
         {
             for (int y = 0; y < Height; y++)
-            {             
-                Fields[x, y] = new Field(x, y, false);
+            {
+                var intPos = new IntVector2(x,y);
+                
+                Fields[x, y] = new Field(intPos.X, intPos.Y, false);
             }
         }
     }
@@ -65,8 +61,8 @@ public class Board
             {
                 if (x == 0 && y == 0) continue;
 
-                var posX = field.X + x;
-                var posY = field.Y + y;
+                var posX = field.Position.X + x;
+                var posY = field.Position.Y + y;
 
                 if(!IsInBoard(posX, posY))
                     continue;
@@ -79,7 +75,7 @@ public class Board
         }
         return sum;
     }
- 
+  
     public bool IsInBoard(int x, int y)
     {
         if (x < 0 || y < 0) return false;

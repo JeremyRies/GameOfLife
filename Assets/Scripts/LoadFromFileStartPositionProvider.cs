@@ -8,7 +8,7 @@ class LoadFromFileStartPositionProvider : AbstractStartPositionProvider
         var loadedBoard = JsonUtility.FromJson<SerializedBoard>(TextAsset.text);
         foreach (var loadedField in loadedBoard.Fields)
         {
-            board.Fields[loadedField.X+100, loadedField.Y+100].Alive = loadedField.Alive;
+            board.Fields[loadedField.Position.X+100, loadedField.Position.Y+100].Alive = loadedField.Alive;
         }
     }
 }
