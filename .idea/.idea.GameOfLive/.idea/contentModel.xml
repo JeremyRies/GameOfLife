@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Jerry\.Rider2018.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Jerry\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Jerry\.Rider2018.2\system\resharper-host\Local\Transient\ReSharperHost\v182\SolutionCaches\_GameOfLive.-1122593057.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Jerry\Desktop\GameOfLive" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="BoardTests.cs" t="Include" />
+        </e>
+        <e p="Prefabs" t="Include">
+          <e p="VertexLit.shader" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Board.cs" t="Include" />
+          <e p="BoardVisualizer.cs" t="Include" />
+          <e p="Field.cs" t="Include" />
+          <e p="FpsDisplay.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="IGameSimulation.cs" t="Include" />
+          <e p="IntVector2.cs" t="Include" />
+          <e p="JobSystem" t="Include">
+            <e p="GameOfLifeJob.cs" t="Include" />
+            <e p="JobSystemManager.cs" t="Include" />
+            <e p="Visualizer.cs" t="Include" />
+          </e>
+          <e p="MultiThreadSimulation.cs" t="Include" />
+          <e p="PaintVertices.cs" t="Include" />
+          <e p="SingleThreadSimulation.cs" t="Include" />
+          <e p="Texture2DVisualizer.cs" t="Include" />
+          <e p="TexturePixel.cs" t="Include" />
+        </e>
+        <e p="ShaderVersion" t="Include">
+          <e p="GOLShader.shader" t="Include" />
+          <e p="SampleCompute.cs" t="Include" />
+          <e p="SampleComputeShader.compute" t="Include" />
+        </e>
+      </e>
+      <e p="GameOfLive.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
